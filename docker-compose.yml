@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  tg-service:
+    image: python:3.9
+    volumes:
+      - ./tg-service:/app
+    working_dir: /app
+    command: python main.py
+    environment:
+      - TG_BOT_TOKEN=${TG_BOT_TOKEN}
+    networks:
+      - app-network
+
+  whisper-service:
+    image: python:3.10
+    volumes:
+      - ./whisper-service:/app
+      - whisper-data:/data
+    working_dir: /app
+    command: python server.py
+    ports:
+      - "50051:50051"
+    networks:
+      - app-network
+
+volumes:
+  whisper-data:
+
+networks:
+  app-network:
