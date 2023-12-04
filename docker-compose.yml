@@ -6,7 +6,7 @@ services:
     volumes:
       - ./tg-service:/app
     working_dir: /app
-    command: python main.py
+    command: /bin/bash -c "pip install -r requirements.txt && python main.py"
     environment:
       - TG_BOT_TOKEN=${TG_BOT_TOKEN}
     networks:
@@ -18,7 +18,7 @@ services:
       - ./whisper-service:/app
       - whisper-data:/data
     working_dir: /app
-    command: python server.py
+    command: /bin/bash -c "pip install -r requirements.txt && python server.py"
     ports:
       - "50051:50051"
     networks:
