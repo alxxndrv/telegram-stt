@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package transcription;
+
+
+service TranscriptionService {
+
+  rpc TranscribeVoiceMessage(VoiceMessageRequest) returns (TranscriptionResponse);
+}
+
+message VoiceMessageRequest {
+  string file_id = 1;
+}
+
+
+message TranscriptionResponse {
+  string text = 1;
+}
